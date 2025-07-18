@@ -16,7 +16,7 @@ selecionarDocumento(nomeDocumento);
 tituloDocumento.innerText = nomeDocumento;
 
 textoEditor.addEventListener("keyup", (texto) => {
-    emitirTexto(textoEditor.value);
+    emitirTexto({ texto: textoEditor.value, nomeDocumento });
 })
 
 function atualizaTexto(texto) {

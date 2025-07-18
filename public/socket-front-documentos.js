@@ -6,9 +6,8 @@ function selecionarDocumento(nome) {
     socket.emit("selecionar_documento", nome);
 }
 
-
-function emitirTexto(textoEditor) {
-    socket.emit("texto_editor", textoEditor);
+function emitirTexto(dados) {
+    socket.emit("texto_editor", dados);
 }
 
 socket.on("texto_editor_clientes", (texto) => {
@@ -16,8 +15,7 @@ socket.on("texto_editor_clientes", (texto) => {
 });
 
 socket.on("disconnect", (motivo) => {
-    console.log(`Servidor desconectado!
-  Motivo: ${motivo}`);
+    console.log(`Servidor desconectado! Motivo: ${motivo}`);
 });
 
 export { selecionarDocumento, emitirTexto };
