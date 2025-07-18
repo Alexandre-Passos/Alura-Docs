@@ -6,6 +6,7 @@ import url from "url";
 import path from "path";
 import { createServer } from 'node:http';
 import { Server } from "socket.io";
+import "./dbConnect.js";
 
 
 const caminhoAtual = url.fileURLToPath(import.meta.url);
