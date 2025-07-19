@@ -2,7 +2,7 @@ import {
     emitirExcluirDocumento,
     emitirTextoEditor,
     selecionarDocumento,
-} from "./socket-front-documentos.js";
+} from "./socket-front-documento.js";
 
 const parametros = new URLSearchParams(window.location.search);
 const nomeDocumento = parametros.get("nome");

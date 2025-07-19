@@ -1,27 +1,27 @@
-import { alertarERedirecionar, atualizaTextoEditor } from "./documento.js";
+import { inserirLinkDocumento, removerLinkDocumento } from "./index.js";
 
 const socket = io();
 
-function selecionarDocumento(nome) {
-    socket.emit("selecionar_documento", nome, (texto) => {
-        atualizaTextoEditor(texto);
+socket.emit("obter_documentos", (documentos) => {
+    documentos.forEach((documento) => {
+        inserirLinkDocumento(documento.nome);
     });
-}
-
-function emitirTextoEditor(dados) {
-    socket.emit("texto_editor", dados);
-}
-
-socket.on("texto_editor_clientes", (texto) => {
-    atualizaTextoEditor(texto);
 });
 
-function emitirExcluirDocumento(nome) {
-    socket.emit("excluir_documento", nome);
+function emitirAdicionarDocumento(nome) {
+    socket.emit("adicionar_documento", nome);
 }
+
+socket.on("adicionar_documento_interface", (nome) => {
+    inserirLinkDocumento(nome);
+});
+
+socket.on("documento_existente", (nome) => {
+    alert(`O documento ${nome} já existe!`);
+});
 
 socket.on("excluir_documento_sucesso", (nome) => {
-    alertarERedirecionar(nome);
+    removerLinkDocumento(nome);
 });
 
-export { emitirTextoEditor, selecionarDocumento, emitirExcluirDocumento };
+export { emitirAdicionarDocumento };
